@@ -2,12 +2,25 @@
 <html>
     <head>
         <title> Index Page</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <body>
         <h1>The index.html page</h1>
-        {{ data_set }}
+        <!-- {{ data_set }}
         {% for tuple in data_set %}
             <p>{{ tuple }}</p>
-        {% endfor %}
+        {% endfor %} -->
+        <p>{{ids}}</p>
+        <p>{{figuresJSON}}</p>
+        <div id="{{ids[0]}}"></div>
+        <script type="text/javascript">
+            var figures = {figuresJSON};
+            var ids = {ids}
+            for(var i in figures) {
+                Plotly.plot(ids[i],
+                    figures[i].data,
+                    figures[i].layout || {});
+            }
+        </script>
     </body>
 </html>
